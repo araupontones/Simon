@@ -27,8 +27,8 @@ var level = arraySimon.length
 
 
 function askUserKey() {
-  $(document).on("keydown", function() {
-    var levelText = "Level " + level;
+  $("h1").on("click", function() {
+    var levelText = "Go Marti! Level " + level;
 
     $("h1").text(levelText);
     playSound(randomColor);
@@ -55,14 +55,13 @@ $(".btn").on("click", function(event) {
   //check if correct
   if (idElement === arraySimon[levelPlayer]) {
     levelPlayer++
-    levelText = "Go Marti! Level " + (levelPlayer + 1);
-    $("h1").text(levelText);
+
 
 //if incorrect
   } else {
     levelPlayer = 0;
     playWrong();
-    $("h1").text("Game Over, Press any key to restart");
+    $("h1").text("Game Over :( Click me to restart");
     arraySimon = startSimon();
     randomColor = arraySimon[0];
     level = arraySimon.length;
@@ -72,11 +71,13 @@ $(".btn").on("click", function(event) {
 //increase array of SImon when needed
   if (levelPlayer === level) {
 
-    levelPlayer = 0;
     //generate random computer
     randomColor = pickRandom();
     arraySimon.push(randomColor);
     level = arraySimon.length;
+    levelText = "Go Marti! Level " + level;
+    $("h1").text(levelText);
+    levelPlayer = 0;
 
     //play soubds
     setTimeout(function() {
